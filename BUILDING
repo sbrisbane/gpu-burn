@@ -1,0 +1,9 @@
+# build on bright 
+git clone https://github.com/sbrisbane/gpu-burn
+
+
+module load cuda11.8/toolkit/ cuda11.8/blas/11.8.0
+
+cd gpu-burn 
+
+CUDAPATH=/cm/shared/apps/cuda11.8/toolkit/11.8.0 CPATH=$CPATH:/cm/shared/apps/cuda11.8/toolkit/11.8.0/targets/x86_64-linux/include/:/cm/shared/apps/ml-pythondeps-py39-cuda11.8-gcc11/4.12.0/lib/python3.9/site-packages/nvidia/cublas/include/ make
