@@ -1,0 +1,26 @@
+#!/bin/bash
+#SBATCH -t 00:21:00
+#SBATCH --exclusive
+#^ time for the batch job
+#v seconds for the actual app
+TIME=1200
+
+
+cd $HOME/gpu-burn
+./gpu_burn $TIME&
+echo $(nproc)
+stress-ng -c $(nproc) -t $TIME&
+sleep 10
+date
+echo "after 10 s"
+top -bn1
+nvidia-smi
+echo
+echo "####################################"
+echo
+sleep $(( $TIME / 2 ))
+date
+echo "after $(( $TIME / 2 ))s"
+top -bn1
+nvidia-smi
+[sean.brisba
